@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>W-Seminar Informatik - Studie</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    body { padding: 20px; background: #fff; max-width: 900px; margin: 0 auto; color: #111; line-height: 1.5; }
+    h1 { font-size: 18px; margin-bottom: 5px; font-weight: bold; }
+    .subtitle { font-size: 13px; color: #555; margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+    
+    .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+    .tab-btn { padding: 6px 12px; background: #eee; border: 1px solid #ccc; cursor: pointer; font-size: 13px; }
+    .tab-btn.active { background: #333; color: white; border-color: #333; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    pre { background: #f9f9f9; border: 1px solid #ccc; padding: 12px; font-size: 12px; white-space: pre-wrap; word-break: break-word; font-family: monospace; height: 100%; min-height: 250px; }
+    
+    .form-group { margin-bottom: 15px; }
+    label { font-weight: bold; font-size: 13px; display: block; margin-bottom: 4px; }
+    input[type="text"], select, textarea { width: 100%; padding: 6px; border: 1px solid #ccc; font-size: 13px; }
+    textarea { resize: vertical; height: 70px; }
+    
+    button.submit-btn { background: #111; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; font-size: 14px; font-weight: bold; margin-top: 5px; }
+    button.submit-btn:hover { background: #333; }
+
+    .task-container { display: none; }
+    .task-container.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <h1>W-Seminar Informatik: Code-Verständnisstudie</h1>
+  <div class="subtitle">Bitte bearbeite nacheinander die Aufgaben und trage deine Ergebnisse ein.</div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTask(0)">Aufgabe 1: Preisberechnung</button>
+    <button class="tab-btn" onclick="switchTask(1)">Aufgabe 2: Notenauswertung</button>
+    <button class="tab-btn" onclick="switchTask(2)">Aufgabe 3: Lagerbestand</button>
+  </div>
+
+  <!-- Netlify Formular -->
+  <form name="w-seminar-studie" method="POST" action="/?success=true" netlify>
+    
+    <!-- AUFGABE 1: Preisberechnung -->
+    <div id="task-0" class="task-container active">
+      <div class="grid">
+        <div>
+          <label>Java-Code (Aufgabe 1):</label>
+          <pre>public class Preisberechnung {
+    public static void main(String[] args) {
+        double grundpreis = 100.0;
+        double versand = 5.0;
+        double rabattFaktor = 0.10; // 10% Rabatt
+
+        double endpreis = grundpreis - (grundpreis * rabattFaktor);
+        endpreis = endpreis + versand;
+
+        System.out.println("Endpreis: " + endpreis);
+    }
+}</pre>
+        </div>
+        <div>
+          <input type="hidden" name="aktuelle_aufgabe" value="Aufgabe 1: Preisberechnung">
+          
+          <div class="form-group">
+            <label for="gruppe1">Deine Testgruppe:</label>
+            <select id="gruppe1" name="gruppe" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="A_Mit_KI">Gruppe A (Mit KI)</option>
+              <option value="B_Ohne_KI">Gruppe B (Ohne KI)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ans1">1. Welcher Wert wird bei der Konsolenausgabe ausgegeben?</label>
+            <input type="text" id="ans1" name="ergebnis" placeholder="Antwort eintragen..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="diff1">2. Wie schwer war diese Aufgabe? (1 bis 5)</label>
+            <select id="diff1" name="schwierigkeit" required>
+              <option value="" disabled selected>Skala wählen...</option>
+              <option value="1">1 - Sehr leicht</option>
+              <option value="2">2 - Leicht</option>
+              <option value="3">3 - Mittel</option>
+              <option value="4">4 - Schwer</option>
+              <option value="5">5 - Sehr schwer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="feed1">3. Feedback / Kommentare (optional):</label>
+            <textarea id="feed1" name="feedback"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Ergebnis für Aufgabe 1 absenden</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUFGABE 2: Notenauswertung -->
+    <div id="task-1" class="task-container">
+      <div class="grid">
+        <div>
+          <label>Java-Code (Aufgabe 2):</label>
+          <pre>public class Notenauswertung {
+    public static void main(String[] args) {
+        int punkte = 85;
+        int note = 6;
+
+        if (punkte >= 90) {
+            note = 1;
+        } else if (punkte >= 75) {
+            note = 2;
+        } else if (punkte >= 60) {
+            note = 3;
+        } else {
+            note = 4;
+        }
+
+        System.out.println("Note: " + note);
+    }
+}</pre>
+        </div>
+        <div>
+          <input type="hidden" name="aktuelle_aufgabe" value="Aufgabe 2: Notenauswertung">
+          
+          <div class="form-group">
+            <label for="gruppe2">Deine Testgruppe:</label>
+            <select id="gruppe2" name="gruppe" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="A_Mit_KI">Gruppe A (Mit KI)</option>
+              <option value="B_Ohne_KI">Gruppe B (Ohne KI)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ans2">1. Welcher Wert wird bei der Konsolenausgabe ausgegeben?</label>
+            <input type="text" id="ans2" name="ergebnis" placeholder="Antwort eintragen..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="diff2">2. Wie schwer war diese Aufgabe? (1 bis 5)</label>
+            <select id="diff2" name="schwierigkeit" required>
+              <option value="" disabled selected>Skala wählen...</option>
+              <option value="1">1 - Sehr leicht</option>
+              <option value="2">2 - Leicht</option>
+              <option value="3">3 - Mittel</option>
+              <option value="4">4 - Schwer</option>
+              <option value="5">5 - Sehr schwer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="feed2">3. Feedback / Kommentare (optional):</label>
+            <textarea id="feed2" name="feedback"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Ergebnis für Aufgabe 2 absenden</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUFGABE 3: Lagerbestand -->
+    <div id="task-2" class="task-container">
+      <div class="grid">
+        <div>
+          <label>Java-Code (Aufgabe 3):</label>
+          <pre>public class Lagerbestand {
+    public static void main(String[] args) {
+        int bestand = 20;
+        int[] lieferungen = {5, 10, 2};
+
+        for (int i = 0; i < lieferungen.length; i++) {
+            bestand = bestand + lieferungen[i];
+        }
+
+        bestand = bestand - 7;
+        System.out.println("Bestand: " + bestand);
+    }
+}</pre>
+        </div>
+        <div>
+          <input type="hidden" name="aktuelle_aufgabe" value="Aufgabe 3: Lagerbestand">
+          
+          <div class="form-group">
+            <label for="gruppe3">Deine Testgruppe:</label>
+            <select id="gruppe3" name="gruppe" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="A_Mit_KI">Gruppe A (Mit KI)</option>
+              <option value="B_Ohne_KI">Gruppe B (Ohne KI)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ans3">1. Welcher Wert wird bei der Konsolenausgabe ausgegeben?</label>
+            <input type="text" id="ans3" name="ergebnis" placeholder="Antwort eintragen..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="diff3">2. Wie schwer war diese Aufgabe? (1 bis 5)</label>
+            <select id="diff3" name="schwierigkeit" required>
+              <option value="" disabled selected>Skala wählen...</option>
+              <option value="1">1 - Sehr leicht</option>
+              <option value="2">2 - Leicht</option>
+              <option value="3">3 - Mittel</option>
+              <option value="4">4 - Schwer</option>
+              <option value="5">5 - Sehr schwer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="feed3">3. Feedback / Kommentare (optional):</label>
+            <textarea id="feed3" name="feedback"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Ergebnis für Aufgabe 3 absenden</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <script>
+    function switchTask(index) {
+      const tasks = document.querySelectorAll('.task-container');
+      const buttons = document.querySelectorAll('.tab-btn');
+      
+      tasks.forEach((t, i) => {
+        t.classList.toggle('active', i === index);
+      });
+      buttons.forEach((b, i) => {
+        b.classList.toggle('active', i === index);
+      });
+    }
+
+    if (window.location.search.includes('success=true')) {
+      document.body.innerHTML = `
+        <div style="text-align:center; margin-top: 60px; font-family:sans-serif;">
+          <h2 style="color: #111; margin-bottom: 10px;">✓ Eingabe erfolgreich gespeichert!</h2>
+          <p style="color: #555; margin-bottom: 25px;">Vielen Dank. Deine Daten wurden sicher an den Netlify-Server übermittelt.</p>
+          <a href="/" style="padding: 10px 20px; background: #111; color: white; text-decoration: none; display:inline-block; font-size:13px;">Nächste Aufgabe / Zurück</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
